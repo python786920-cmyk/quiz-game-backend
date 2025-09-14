@@ -1,8 +1,3 @@
--- Quiz Game Database Schema
--- Create database (if needed)
--- CREATE DATABASE IF NOT EXISTS cztldhwx_Auto_PostTg;
--- USE cztldhwx_Auto_PostTg;
-
 -- Users Table
 CREATE TABLE IF NOT EXISTS users (
   user_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -47,7 +42,7 @@ CREATE TABLE IF NOT EXISTS matches (
   INDEX idx_created (created_at)
 );
 
--- Game Sessions Table (for detailed tracking)
+-- Game Sessions Table
 CREATE TABLE IF NOT EXISTS game_sessions (
   session_id INT AUTO_INCREMENT PRIMARY KEY,
   match_id INT NOT NULL,
@@ -65,7 +60,7 @@ CREATE TABLE IF NOT EXISTS game_sessions (
   INDEX idx_user (user_id)
 );
 
--- Transactions Table (for coin tracking)
+-- Transactions Table
 CREATE TABLE IF NOT EXISTS transactions (
   transaction_id INT AUTO_INCREMENT PRIMARY KEY,
   user_id INT NOT NULL,
@@ -85,8 +80,3 @@ CREATE TABLE IF NOT EXISTS transactions (
   INDEX idx_type (type),
   INDEX idx_created (created_at)
 );
-
--- Insert sample data for testing (Optional)
--- INSERT INTO users (phone_number, password_hash, username, profile_logo, coins) VALUES 
--- ('1234567890', '$2b$10$dummy.hash.for.testing', 'TestPlayer1', 'https://api.dicebear.com/7.x/avataaars/svg?seed=TestPlayer1', 5000),
--- ('0987654321', '$2b$10$dummy.hash.for.testing', 'TestPlayer2', 'https://api.dicebear.com/7.x/avataaars/svg?seed=TestPlayer2', 3000);
