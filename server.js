@@ -20,7 +20,6 @@ const io = socketIo(server, {
 // Middleware
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'public')));
 
 // Database Configuration
 const dbConfig = {
@@ -609,9 +608,18 @@ async function refundUser(userId, amount) {
     }
 }
 
-// Serve static files
+// API Health Check
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    res.json({
+        success: true,
+        message: 'Quiz Game Backend API is running!',
+        version: '1.0.0',
+        endpoints: {
+            register: 'POST /api/auth/register',
+            login: 'POST /api/auth/login',
+            profile: 'GET /api/user/profile'
+        }
+    });
 });
 
 // Start server
