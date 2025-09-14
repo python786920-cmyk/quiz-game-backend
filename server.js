@@ -59,7 +59,7 @@ async function initializeDatabase() {
                 phone VARCHAR(15) UNIQUE NOT NULL,
                 password_hash VARCHAR(255) NOT NULL,
                 username VARCHAR(50) NOT NULL,
-                profile_logo VARCHAR(255) DEFAULT '👤',
+                profile_logo VARCHAR(255) DEFAULT 'avatar',
                 coins INT DEFAULT 1000,
                 total_matches INT DEFAULT 0,
                 wins INT DEFAULT 0,
@@ -195,8 +195,8 @@ app.post('/api/auth/register', async (req, res) => {
 
         // Insert user
         const [result] = await connection.execute(
-            'INSERT INTO users (phone, password_hash, username) VALUES (?, ?, ?)',
-            [phone, hashedPassword, username]
+            'INSERT INTO users (phone, password_hash, username, profile_logo) VALUES (?, ?, ?, ?)',
+            [phone, hashedPassword, username, 'avatar']
         );
 
         connection.release();
